@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beni affet</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #fff;
+}
+
+.container {
+  text-align: center;
+  background: rgba(255,255,255,0.9);
+  padding: 30px;
+  border-radius: 25px;
+  max-width: 350px;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: 1s ease;
+  border: 3px solid #ff4d6d;
+  box-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff1a4d, 0 0 60px #ff006e, inset 0 0 20px rgba(255,77,109,0.2);
+}
+
+.container.show {
+  opacity: 1;
+  transform: scale(1);
+  animation: neonPulse 2s infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% { box-shadow: 0 0 20px #ff4d6d, 0 0 40px #ff1a4d, 0 0 60px #ff006e, inset 0 0 20px rgba(255,77,109,0.2); }
+  50% { box-shadow: 0 0 30px #ff4d6d, 0 0 60px #ff1a4d, 0 0 80px #ff006e, inset 0 0 30px rgba(255,77,109,0.4); }
+}
+
+.container {
+  text-align: center;
+  background: rgba(255,255,255,0.9);
+  padding: 30px;
+  border-radius: 25px;
+  max-width: 350px;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: 1s ease;
+}
+
+.container.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.container img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ff4d6d;
+  margin-bottom: 15px;
+  transform: scale(0);
+  transition: 1s ease 0.5s;
+}
+
+.container.show img {
+  transform: scale(1);
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.8em;
+  margin: 10px 0;
+  color: #ff4d6d;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: 1s ease 1s;
+}
+
+.container.show h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+p {
+  font-size: 1em;
+  line-height: 1.4;
+  color: #555;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 1s ease 1.2s;
+}
+
+.container.show p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+button {
+  padding: 10px 25px;
+  font-size: 1em;
+  border: none;
+  border-radius: 12px;
+  background-color: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.container.show button {
+  opacity: 1;
+  transform: scale(1);
+}
+
+button:hover {
+  background-color: #ff1a4d;
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(-45deg);
+  z-index: 0;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: 10px; top: 0; }
+
+@keyframes explode {
+  0% { transform: scale(1) translate(0,0); opacity:1; }
+  100% { transform: scale(1.5) translate(var(--x), var(--y)); opacity:0; }
+}
+
+@keyframes floatBgHeart {
+  0% { transform: translateY(0) scale(0.5); opacity: 0.7; }
+  50% { transform: translateY(-50px) scale(1); opacity: 1; }
+  100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+}
+
+.bg-heart {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: rgb(221, 16, 50);
+  transform: rotate(-45deg);
+  z-index: 0;
+}
+
+.bg-heart::before,
+.bg-heart::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: rgb(255, 0, 43);
+  border-radius: 50%;
+}
+
+.bg-heart::before { top: -7.5px; left: 0; }
+.bg-heart::after { left: 7.5px; top: 0; }
+</style>
+</head>
+<body>
+
+<div class="container" id="container">
+  <img src="Ekran görüntüsü 2026-01-29 220606.png" alt="Sevgilim">
+  <h1>Özür Dilerim ❤️</h1>
+  <p>Balım Canımın içi, anlık bir yanlış anlaşılma için üzgünüm.Cidden ne yazdığımı bilmiyorum, Anlık aptallığıma denk geldi.Gerçekten seni üzmek istemiyorum ve sana değer veriyorum ,Gerçekten hayatta tek sana değer veriyorum beni yalnız bırakma. Beni affeder misin?</p>
+  <button id="forgiveBtn">Affettim 💖</button>
+</div>
+
+<script>
+const container = document.getElementById('container');
+window.onload = () => {
+  // Sayfa açıldığında container animasyonlu şekilde görünür
+  setTimeout(() => container.classList.add('show'), 200);
+
+  // Arka planda hafif kalpler
+  for(let i=0;i<20;i++){
+    const h = document.createElement('div');
+    h.classList.add('bg-heart');
+    h.style.left = Math.random()*100 + 'vw';
+    h.style.top = Math.random()*100 + 'vh';
+    h.style.animation = `floatBgHeart ${3+Math.random()*3}s infinite ease-in-out`;
+    document.body.appendChild(h);
+  }
+}
+
+
+
+const button = document.getElementById('forgiveBtn');
+button.addEventListener('click', () => {
+  // Kalpler patlaması
+  for(let i=0; i<30; i++){
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    const x = (Math.random()-0.5)*200 + 'px';
+    const y = (Math.random()-0.5)*200 + 'px';
+    heart.style.setProperty('--x', x);
+    heart.style.setProperty('--y', y);
+    heart.style.animation = 'explode 1s forwards';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(),1000);
+  }
+
+  // Başlık değişsin
+  const h1 = container.querySelector('h1');
+  h1.textContent = "Seni Çok Seviyorum ❤️";
+
+  // Arka plan hafif renklenme
+  document.body.style.background = "linear-gradient(to bottom right, #ffe6e6, #ffccf2)";
+});
+</script>
+
+</body>
+</html>
